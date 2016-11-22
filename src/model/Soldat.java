@@ -4,9 +4,13 @@ package model;
 public class Soldat implements ISoldat{
 
 	@Override
+	/**
+	 * 
+	 * huhk
+	 */
 	public int getPoints() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override
@@ -18,7 +22,7 @@ public class Soldat implements ISoldat{
 	@Override
 	public int getPortee() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override
