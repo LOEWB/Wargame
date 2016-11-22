@@ -10,7 +10,7 @@ public class Soldat implements ISoldat{
 	 */
 	public int getPoints() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 1;
 	}
 
 	@Override
