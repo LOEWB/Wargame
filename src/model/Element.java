@@ -10,7 +10,7 @@ public abstract class Element implements IConfig {
     public Position pos;
     public static String nom;
     public Color couleur;
-  //les deux types sont null signifie que il ya pas d'element
+  //les deux types sont null signifie que l'element correspondant est null
     TypesH typeh=null;
     TypesM typem=null;
 
