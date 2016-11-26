@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import model.Position;
 
+import java.awt.*;
+
 public class Case extends JButton {
 
     private PositionView pos;

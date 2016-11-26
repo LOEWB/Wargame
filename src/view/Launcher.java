@@ -8,13 +8,14 @@ public class Launcher {
     public static void main(String args[]){
         System.out.println("started");
         
-        //Partie utilisée comme Model
+        //Partie utilisï¿½e comme Model
         Partie partie = new Partie();
-        //WargameController utilisée comme controller
+        //WargameController utilisï¿½e comme controller
         WargameController controller = new WargameController(partie);
-        //FenetreJeu utilisée comme View
+        //FenetreJeu utilisï¿½e comme View
         FenetreJeu fen = new FenetreJeu(controller);
         partie.addObserver(fen);
+        partie.addObserver(fen.getPanneau());
         partie.lancerPartie();
         
     }

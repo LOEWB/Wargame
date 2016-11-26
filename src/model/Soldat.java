@@ -3,6 +3,10 @@ package model;
 
 public class Soldat extends Element implements ISoldat{
 
+	public Soldat(){
+		vide = false;
+	}
+
 	public void setPos(Position pos) {
 		this.pos = pos;
 	}

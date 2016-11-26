@@ -29,9 +29,11 @@ public class Partie implements Observable{
 	}
 	
 	public void lancerPartie(){
+		this.carte.placeObstacles();
 		this.carte.placeHeros((ArmeeHeros) this.joueurReel.getArmee());
 		this.carte.placeMonstres((ArmeeMonstres) this.joueurIA.getArmee());
 		this.partieEnCours = true;
+		this.notifyObserver("");
 		while(this.partieEnCours){
 			this.joueurReel.jouerTour();
 			this.notifyObserver("");
@@ -64,6 +66,10 @@ public class Partie implements Observable{
 		return joueurReel;
 	}
 
+	public Carte getCarte() {
+		return carte;
+	}
+
 	public JoueurIA getJoueurIA() {
 		return joueurIA;
 	}
@@ -87,7 +93,7 @@ public class Partie implements Observable{
 	@Override
 	public void notifyObserver(String str) {
 		for(Observer obs : listObserver)
-			obs.update("");
+			obs.update("",this);
 	}
 }
 

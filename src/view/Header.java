@@ -29,19 +29,11 @@ public class Header extends JPanel{
 		this.add(BorderLayout.CENTER, boutonTour);
 	}
 
-	/**
-	 * est appelé à la fin du tour d'un joueur pour changer la couleur du bouton en fonction du joueur du tour courant
-	 * @param p
-	 */
-	public void switchCouleurBouton() {
-		if(this.boutonTour.getBackground()==Color.GRAY)
-		{
-			boutonTour.setBackground(Color.GREEN);
-		}
-		else{
-			boutonTour.setBackground(Color.GRAY);
-		}
-		
-	}
 
+	public void allumerBoutonFinTour() {
+		boutonTour.setBackground(Color.GREEN);
+	}
+	public void eteindreBoutonFinTour(){
+		boutonTour.setBackground(Color.GRAY);
+	}
 }

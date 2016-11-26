@@ -46,9 +46,12 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
 		return header;
 	}
 
-	@Override
-	public void update(String str) {
-		header.switchCouleurBouton();
-	}
-    
+    @Override
+    public void update(String str, Object o) {
+        Partie p = (Partie) o;
+        if(p.getJoueurTourCourant()==p.getJoueurReel())
+            header.allumerBoutonFinTour();
+        else
+            header.eteindreBoutonFinTour();
+    }
 }

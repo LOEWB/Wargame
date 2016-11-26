@@ -23,20 +23,20 @@ public class Carte implements ICarte,IConfig{
 	public void placeObstacles(){
 		for(int i=0; i<NB_OBSTACLES ;i++){
 			Position p = trouvePositionVide();
-			grille[p.getX()][p.getY()].setElement(p);
+			grille[p.getX()][p.getY()].setElement(new Obstacle(p));
 		}
 	}
 	//Placement des Heros
 	public void placeHeros(ArmeeHeros armeeHeros){
 		for(int i=0; i<armeeHeros.getListeSoldats().size();i++){
-			int x = (int)(Math.random()*LARGEUR_CARTE/2);
-			int y = (int)(Math.random()*HAUTEUR_CARTE/2);
+			int x = (int)(Math.random()*(LARGEUR_CARTE/2-1));
+			int y = (int)(Math.random()*HAUTEUR_CARTE);
 			
 			int lettre =(int)(Math.random()*122-65);
 			String nom= Double.toString(lettre);
-			while(grille[x][y].getElement()!=null){
-				x = (int)(Math.random()*LARGEUR_CARTE/2);
-				y = (int)(Math.random()*HAUTEUR_CARTE/2);
+			while(!grille[x][y].getElement().vide){
+				x = (int)(Math.random()*(LARGEUR_CARTE/2-1));
+				y = (int)(Math.random()*HAUTEUR_CARTE);
 			}
 			armeeHeros.getListeSoldats().get(i).setPos(new Position(x,y));
 			grille[x][y].setElement(armeeHeros.getListeSoldats().get(i));
@@ -46,14 +46,14 @@ public class Carte implements ICarte,IConfig{
 	//Placement des Monstres
 	public void placeMonstres(ArmeeMonstres armeeMonstres){
 		for(int i=0; i<armeeMonstres.getListeSoldats().size();i++){
-			int x = (int)(Math.random()*LARGEUR_CARTE/2+LARGEUR_CARTE/2);
-			int y = (int)(Math.random()*HAUTEUR_CARTE/2+HAUTEUR_CARTE/2);
+			int x = (int)(Math.random()*(LARGEUR_CARTE/2)+(LARGEUR_CARTE/2+1));
+			int y = (int)(Math.random()*HAUTEUR_CARTE);
 			
 			int lettre =(int)(Math.random()*122-65);
 			String nom= Double.toString(lettre);
-			while(grille[x][y].getElement()!=null){
-				x = (int)(Math.random()*LARGEUR_CARTE/2+LARGEUR_CARTE/2);
-				y = (int)(Math.random()*HAUTEUR_CARTE/2+HAUTEUR_CARTE/2);
+			while(!grille[x][y].getElement().vide){
+				x = (int)(Math.random()*LARGEUR_CARTE/2+(LARGEUR_CARTE/2+1));
+				y = (int)(Math.random()*HAUTEUR_CARTE);
 			}
 			armeeMonstres.getListeSoldats().get(i).setPos(new Position(x,y));
 			grille[x][y].setElement(armeeMonstres.getListeSoldats().get(i));
@@ -66,11 +66,11 @@ public class Carte implements ICarte,IConfig{
 	}
 	public Position trouvePositionVide(){
 		
-			int a = (int)(Math.random()*HAUTEUR_CARTE);
-			int b = (int)(Math.random()*LARGEUR_CARTE);
-			while(grille[a][b].getElement()!=null){
-				a = (int)(Math.random()*HAUTEUR_CARTE);
-				b = (int)(Math.random()*LARGEUR_CARTE);
+			int a = (int)(Math.random()*LARGEUR_CARTE);
+			int b = (int)(Math.random()*HAUTEUR_CARTE);
+			while(!grille[a][b].getElement().vide){
+				a = (int)(Math.random()*LARGEUR_CARTE);
+				b = (int)(Math.random()*HAUTEUR_CARTE);
 			} 
 			return new Position(a,b);
 	}
@@ -104,5 +104,9 @@ public class Carte implements ICarte,IConfig{
 	}
 	public void jouerSoldats(PanneauJeu pj){
 		
+	}
+
+	public CaseModel[][] getGrille() {
+		return grille;
 	}
 }

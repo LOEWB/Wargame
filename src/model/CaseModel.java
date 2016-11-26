@@ -8,11 +8,12 @@ public class CaseModel{
 
 	    public CaseModel(int x, int y){
 	        pos = new Position(x,y);
+			element = new Element();
 	    }
 
 		public boolean setElement(Object elem) {
 			// TODO Auto-generated method stub
-			if(this.element==null)
+			if(this.element.vide)
 			{
 				this.element = (Element) elem;
 				return true;
