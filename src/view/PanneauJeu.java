@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 
 public class PanneauJeu extends JPanel{
-	public PanneauJeu(int nbLignes, int nbCol){
+	public PanneauJeu(int nbCol, int nbLignes){
 		this.setLayout(new GridLayout(nbLignes,nbCol));
 		for(int i=0;i<nbLignes;i++)
         {

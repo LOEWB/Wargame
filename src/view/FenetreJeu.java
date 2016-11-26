@@ -4,18 +4,16 @@ package view;
 import javax.swing.*;
 
 import controller.WargameController;
+import model.IConfig;
 import model.Partie;
 import observer.Observer;
 
 import java.awt.*;
 
-public class FenetreJeu extends JFrame implements Observer{
+public class FenetreJeu extends JFrame implements IConfig,Observer{
 	public final static String TITRE_FENETRE = "Wargame";
 	public final static int LARGEUR_FENETRE = 1150;
 	public final static int HAUTEUR_FENETRE = 750;
-    public final static int NB_LIGNES = 15;
-    public final static int NB_COLONNES = 25;
-    
     private PanneauJeu panneau;
     private Header header;
 
@@ -28,7 +26,7 @@ public class FenetreJeu extends JFrame implements Observer{
     	this.setTitle(TITRE_FENETRE);
         this.setSize(new Dimension(LARGEUR_FENETRE,HAUTEUR_FENETRE));
         this.setLocationRelativeTo(null);
-        panneau = new PanneauJeu(NB_LIGNES,NB_COLONNES);
+        panneau = new PanneauJeu(LARGEUR_CARTE,HAUTEUR_CARTE);
         this.getContentPane().add(panneau);
         header = new Header(controller);
         this.getContentPane().add(BorderLayout.NORTH,header);

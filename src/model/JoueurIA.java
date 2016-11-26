@@ -6,6 +6,7 @@ public class JoueurIA extends AbstractJoueur{
 
 	public JoueurIA(Partie p) {
 		super(p);
+		this.armee = new ArmeeMonstres();
 	}
 
 	

@@ -11,12 +11,12 @@ public class Partie implements Observable{
 	private AbstractJoueur joueurTourCourant;
 	private JoueurReel joueurReel;
 	private JoueurIA joueurIA;
+	private Carte carte;
 	private boolean partieEnCours = false;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>(); 
 
 	public Partie(){
 		initPartie();
-		
 	}
 
 	private void initPartie() {
@@ -24,10 +24,13 @@ public class Partie implements Observable{
 		this.joueurIA = new JoueurIA(this);		
 		//TODO A definir aleatoirement
 		this.joueurTourCourant = this.joueurReel;
+		this.carte = new Carte();
 		
 	}
 	
 	public void lancerPartie(){
+		this.carte.placeHeros((ArmeeHeros) this.joueurReel.getArmee());
+		this.carte.placeMonstres((ArmeeMonstres) this.joueurIA.getArmee());
 		this.partieEnCours = true;
 		while(this.partieEnCours){
 			this.joueurReel.jouerTour();
@@ -37,7 +40,7 @@ public class Partie implements Observable{
 		}
 	}
 	/**
-	 * notification appelée par un des joueurs pour signaler la fin de son tour
+	 * notification appelï¿½e par un des joueurs pour signaler la fin de son tour
 	 */
 	public void notificationFinDeTour(){
 		if(this.joueurTourCourant == joueurReel)
@@ -47,7 +50,7 @@ public class Partie implements Observable{
 	}
 	
 	/**
-	 * notification appelée par un des joueurs pour signaler qu'il est mort
+	 * notification appelï¿½e par un des joueurs pour signaler qu'il est mort
 	 */
 	public void notificationFinDeJeu(){
 		this.partieEnCours = false;

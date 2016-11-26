@@ -1,8 +1,15 @@
 package model;
 
 
-public class Soldat implements ISoldat{
+public class Soldat extends Element implements ISoldat{
 
+	public void setPos(Position pos) {
+		this.pos = pos;
+	}
+
+	public Position getPos() {
+		return pos;
+	}
 	@Override
 	/**
 	 * 

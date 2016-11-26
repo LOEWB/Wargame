@@ -4,6 +4,7 @@ public class JoueurReel extends AbstractJoueur{
 
 	public JoueurReel(Partie p) {
 		super(p);
+		this.armee = new ArmeeHeros();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,8 +22,9 @@ public class JoueurReel extends AbstractJoueur{
 	@Override
 	public void ajouterPartie(Partie p) {
 		// TODO Auto-generated method stub
-		
 	}
+
+
 	
 	
 

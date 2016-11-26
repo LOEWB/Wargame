@@ -17,6 +17,6 @@ public class Obstacle extends Element {
 		}
 	}
 	private TypeObstacle TYPE;
-	Obstacle(TypeObstacle type, Position pos) { TYPE = type; this.pos = pos; }
+	Obstacle(Position pos) { TYPE = TypeObstacle.getObstacleAlea(); this.pos = pos; }
 	public String toString() { return ""+TYPE; }
 }
