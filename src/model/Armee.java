@@ -17,4 +17,14 @@ public class Armee implements IConfig{
             soldat.setAJoueCeTour(false);
         }
     }
+
+    public boolean estAPortee(Position pos)
+    {
+        for(Soldat soldat:this.listeSoldats)
+        {
+            if(soldat.estAPortee(pos))
+                return true;
+        }
+        return false;
+    }
 }

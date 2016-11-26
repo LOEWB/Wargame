@@ -24,4 +24,8 @@ public class CaseModel{
 		public Element getElement(){
 			return element;
 		}
+
+		public Position getPos(){
+			return this.pos;
+		}
 }

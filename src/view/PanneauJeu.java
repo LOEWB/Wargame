@@ -48,6 +48,12 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                 }
                 this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(grille[i][j].getElement().couleur);
                 this.listeBoutons.get(j*LARGEUR_CARTE+i).setMargin(new Insets(0, 0, 0, 0));
+
+                if(grille[i][j].getElement().vide)
+                {
+                    if(!p.getJoueurReel().getArmee().estAPortee(grille[i][j].getPos()))
+                        this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(new Color(0x1E0218));
+                }
             }
         }
     }

@@ -17,7 +17,7 @@ public abstract class Soldat extends Element implements ISoldat{
 	}
 
 	public Position getPos() {
-		return pos;
+		return this.pos;
 	}
 	@Override
 	/**
@@ -68,8 +68,11 @@ public abstract class Soldat extends Element implements ISoldat{
 		return nom;
 	}
 
-	public boolean estAPortee()
+	public boolean estAPortee(Position posi)
 	{
-		return true;
+		if (posi.getX()<=(this.getPos().getX()+this.getPortee()) && posi.getX()>=(this.getPos().getX()-this.getPortee()))
+			if (posi.getY()<=(this.getPos().getY()+this.getPortee()) && posi.getY()>=(this.getPos().getY()-this.getPortee()))
+				return true;
+		return false;
 	}
 }

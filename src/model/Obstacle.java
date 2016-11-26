@@ -19,7 +19,7 @@ public class Obstacle extends Element {
 	private TypeObstacle TYPE;
 	Obstacle(Position pos) {
 		TYPE = TypeObstacle.getObstacleAlea();
-		this.pos = pos;
+		this.setPos(pos);
 		this.couleur=TYPE.COULEUR;
 		this.vide=false;
 		clickable=false;

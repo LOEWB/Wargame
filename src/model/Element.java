@@ -8,7 +8,7 @@ import model.ISoldat.*;
  */
 public class Element implements IConfig {
     public boolean clickable=false;
-    public Position pos;
+    protected Position pos;
     public static String nom;
     public Color couleur;
     public boolean vide;
@@ -18,4 +18,11 @@ public class Element implements IConfig {
         this.vide = true;
     }
 
+    public Position getPos() {
+        return pos;
+    }
+
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
 }
