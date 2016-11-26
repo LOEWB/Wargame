@@ -11,4 +11,10 @@ public class Armee implements IConfig{
     public ArrayList<Soldat> getListeSoldats() {
         return listeSoldats;
     }
+
+    public void initDebutTour(){
+        for(Soldat soldat:this.listeSoldats){
+            soldat.setAJoueCeTour(false);
+        }
+    }
 }

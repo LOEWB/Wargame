@@ -8,8 +8,8 @@ public class Heros extends Soldat{
 
 	TypesH typeH;
 
-	public Heros(){
-		super();
+	public Heros(String nom){
+		super(nom);
 		this.typeH = TypesH.getTypeHAlea();
 		this.couleur = COULEUR_HEROS;
 	}

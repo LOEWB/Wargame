@@ -3,6 +3,7 @@ package view;
 import model.CaseModel;
 import model.IConfig;
 import model.Partie;
+import model.Soldat;
 import observer.Observer;
 
 import java.awt.*;
@@ -39,7 +40,14 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         {
             for(int j=0;j<HAUTEUR_CARTE;j++)
             {
+                if(!grille[i][j].getElement().clickable)
+                    this.listeBoutons.get(j*LARGEUR_CARTE+i).setRolloverEnabled(false);
+                else {
+                    Soldat soldat = (Soldat) grille[i][j].getElement();
+                    this.listeBoutons.get(j * LARGEUR_CARTE + i).setText(String.valueOf(soldat.getNom()));
+                }
                 this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(grille[i][j].getElement().couleur);
+                this.listeBoutons.get(j*LARGEUR_CARTE+i).setMargin(new Insets(0, 0, 0, 0));
             }
         }
     }

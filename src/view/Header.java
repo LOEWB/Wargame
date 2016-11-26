@@ -9,12 +9,11 @@ import java.util.Observer;
 
 import javax.swing.*;
 
-import controller.WargameController;
-import model.Partie;
+import controller.ControllerFinTour;
 
 public class Header extends JPanel{
 	private JButton boutonTour;
-	public Header(WargameController controller){
+	public Header(ControllerFinTour controller){
 		boutonTour = new JButton("FIN DE TOUR");
 		boutonTour.setBackground(Color.GREEN);
 		boutonTour.addActionListener(new ActionListener(){

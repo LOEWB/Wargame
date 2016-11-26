@@ -11,6 +11,7 @@ public class JoueurReel extends AbstractJoueur{
 	@Override
 	public void jouerTour() {
 		System.out.println("A vous de jouer");
+		this.armee.initDebutTour();
 		while(this.partie.getJoueurTourCourant()==this){
 			try {
 			       Thread.sleep(1);

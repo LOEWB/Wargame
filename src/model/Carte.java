@@ -46,13 +46,13 @@ public class Carte implements ICarte,IConfig{
 	//Placement des Monstres
 	public void placeMonstres(ArmeeMonstres armeeMonstres){
 		for(int i=0; i<armeeMonstres.getListeSoldats().size();i++){
-			int x = (int)(Math.random()*(LARGEUR_CARTE/2)+(LARGEUR_CARTE/2+1));
+			int x = (int)(Math.random()*(LARGEUR_CARTE/2)+1+(LARGEUR_CARTE/2));
 			int y = (int)(Math.random()*HAUTEUR_CARTE);
 			
 			int lettre =(int)(Math.random()*122-65);
 			String nom= Double.toString(lettre);
 			while(!grille[x][y].getElement().vide){
-				x = (int)(Math.random()*LARGEUR_CARTE/2+(LARGEUR_CARTE/2+1));
+				x = (int)(Math.random()*LARGEUR_CARTE/2+1+(LARGEUR_CARTE/2));
 				y = (int)(Math.random()*HAUTEUR_CARTE);
 			}
 			armeeMonstres.getListeSoldats().get(i).setPos(new Position(x,y));

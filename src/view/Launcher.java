@@ -1,6 +1,6 @@
 package view;
 
-import controller.WargameController;
+import controller.ControllerFinTour;
 import model.Partie;
 
 
@@ -11,7 +11,7 @@ public class Launcher {
         //Partie utilis�e comme Model
         Partie partie = new Partie();
         //WargameController utilis�e comme controller
-        WargameController controller = new WargameController(partie);
+        ControllerFinTour controller = new ControllerFinTour(partie);
         //FenetreJeu utilis�e comme View
         FenetreJeu fen = new FenetreJeu(controller);
         partie.addObserver(fen);

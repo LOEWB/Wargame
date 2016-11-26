@@ -3,7 +3,7 @@ package view;
 
 import javax.swing.*;
 
-import controller.WargameController;
+import controller.ControllerFinTour;
 import model.IConfig;
 import model.Partie;
 import observer.Observer;
@@ -18,11 +18,11 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
     private Header header;
 
 
-    public FenetreJeu(WargameController controller){
+    public FenetreJeu(ControllerFinTour controller){
         initFenetreJeu(controller);
     }
 
-    public void initFenetreJeu(WargameController controller){
+    public void initFenetreJeu(ControllerFinTour controller){
     	this.setTitle(TITRE_FENETRE);
         this.setSize(new Dimension(LARGEUR_FENETRE,HAUTEUR_FENETRE));
         this.setLocationRelativeTo(null);

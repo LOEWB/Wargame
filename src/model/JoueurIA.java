@@ -13,6 +13,7 @@ public class JoueurIA extends AbstractJoueur{
 	
 	@Override
 	public void jouerTour() {
+		this.armee.initDebutTour();
 		//simulation tour du joueur IA
 		try {
 			System.out.println("L'IA joue...");
