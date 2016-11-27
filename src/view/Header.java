@@ -10,9 +10,11 @@ import controller.ControllerFinTour;
 
 public class Header extends JPanel{
 	private JButton boutonTour;
-	public Header(ControllerFinTour controller){
+	private ControllerFinTour controller;
+	public Header(ControllerFinTour control){
 		boutonTour = new JButton("FIN DE TOUR");
 		boutonTour.setBackground(Color.GREEN);
+		this.controller = control;
 		boutonTour.addActionListener(new ActionListener(){
 			
 
