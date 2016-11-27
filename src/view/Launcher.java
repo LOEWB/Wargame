@@ -13,7 +13,7 @@ public class Launcher {
         //WargameController utilis�e comme controller
         ControllerFinTour controller = new ControllerFinTour(partie);
         //FenetreJeu utilis�e comme View
-        FenetreJeu fen = new FenetreJeu(controller);
+        FenetreJeu fen = new FenetreJeu(controller,partie);
         partie.addObserver(fen);
         partie.addObserver(fen.getPanneau());
         partie.lancerPartie();

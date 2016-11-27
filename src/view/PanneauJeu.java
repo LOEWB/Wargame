@@ -30,7 +30,9 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         }
 	}
 
-
+    public ArrayList<Case> getListeBoutons(){
+        return this.listeBoutons;
+    }
     @Override
     public void update(String str, Object o) {
         Partie p=(Partie) o;
@@ -52,7 +54,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                 if(grille[i][j].getElement().vide)
                 {
                     if(!p.getJoueurReel().getArmee().estAPortee(grille[i][j].getPos()))
-                        this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(new Color(0x1E0218));
+                        this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(new Color(0x12121E));
                 }
             }
         }
