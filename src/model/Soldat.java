@@ -3,11 +3,11 @@ package model;
 
 public abstract class Soldat extends Element implements ISoldat{
 
-	protected String nom;
+	protected String num;
 	protected boolean aJoueCeTour;
 
 	public Soldat(String nom){
-		this.nom = nom;
+		this.num = nom;
 		vide = false;
 		clickable=true;
 	}
@@ -64,8 +64,8 @@ public abstract class Soldat extends Element implements ISoldat{
 		this.aJoueCeTour=bool;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getNum() {
+		return num;
 	}
 
 	public boolean estAPortee(Position posi)
@@ -75,4 +75,7 @@ public abstract class Soldat extends Element implements ISoldat{
 				return true;
 		return false;
 	}
+
+	public abstract String getType();
+	public abstract int getVie();
 }

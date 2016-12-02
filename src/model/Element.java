@@ -22,6 +22,10 @@ public class Element implements IConfig {
         return pos;
     }
 
+    public static String getNom() {
+        return nom;
+    }
+
     public void setPos(Position pos) {
         this.pos = pos;
     }

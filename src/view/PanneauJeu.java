@@ -46,7 +46,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                     this.listeBoutons.get(j*LARGEUR_CARTE+i).setRolloverEnabled(false);
                 else {
                     Soldat soldat = (Soldat) grille[i][j].getElement();
-                    this.listeBoutons.get(j * LARGEUR_CARTE + i).setText(String.valueOf(soldat.getNom()));
+                    this.listeBoutons.get(j * LARGEUR_CARTE + i).setText(String.valueOf(soldat.getNum()));
                 }
                 this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(grille[i][j].getElement().couleur);
                 this.listeBoutons.get(j*LARGEUR_CARTE+i).setMargin(new Insets(0, 0, 0, 0));
@@ -54,7 +54,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                 if(grille[i][j].getElement().vide)
                 {
                     if(!p.getJoueurReel().getArmee().estAPortee(grille[i][j].getPos()))
-                        this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(new Color(0x12121E));
+                        this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(COULEUR_INCONNU);
                 }
             }
         }
