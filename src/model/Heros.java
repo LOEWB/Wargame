@@ -7,7 +7,7 @@ package model;
 public class Heros extends Soldat{
 
 	TypesH typeH;
-	private vieH;
+	private int vieH;
 
 	public Heros(String nom){
 		super(nom);
@@ -16,7 +16,6 @@ public class Heros extends Soldat{
 		vieH=getVie();
 	}
 
-	@Override
 	public String getType() {
 		return typeH.name();
 	}

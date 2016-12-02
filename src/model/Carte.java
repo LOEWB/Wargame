@@ -102,7 +102,7 @@ public class Carte implements ICarte,IConfig{
 		} 
 		return (Heros) grille[a][b].getElement();
 	}
-	ublic void mort(Soldat soldat){
+	public void mort(Soldat soldat){
 		if(soldat.getPoints()==0){
 			grille[soldat.getPos().getX()][soldat.getPos().getY()].setElement(null);
 		}
@@ -121,11 +121,12 @@ public class Carte implements ICarte,IConfig{
 		return false;
 	}
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
-		if(grille[pos.getX()][pos.getY()].setElement(soldat)) return true;
+		Position p= soldat.pos;
+		if(grille[pos.getX()][pos.getY()].setElement(soldat)){
+			grille[p.getX()][p.getY()].setElement(null);
+			return true;
+		}
 		return false;
-	}
-	public void jouerSoldats(PanneauJeu pj){
-		
 	}
 
 	public CaseModel[][] getGrille() {
