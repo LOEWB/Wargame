@@ -49,8 +49,10 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         {
             for(int j=0;j<HAUTEUR_CARTE;j++)
             {
-                if(!grille[i][j].getElement().estClickable())
-                    this.listeBoutons.get(j*LARGEUR_CARTE+i).setRolloverEnabled(false);
+                if(!grille[i][j].getElement().estClickable()) {
+                    this.listeBoutons.get(j * LARGEUR_CARTE + i).setText("");
+                    this.listeBoutons.get(j * LARGEUR_CARTE + i).setRolloverEnabled(false);
+                }
                 else {
                     Soldat soldat = (Soldat) grille[i][j].getElement();
                     this.listeBoutons.get(j * LARGEUR_CARTE + i).setText(String.valueOf(soldat.getNum()));
