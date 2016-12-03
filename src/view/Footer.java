@@ -42,10 +42,10 @@ package view;
 
              public void notifierHoverCase(CaseModel caseModel){
                  labelPosition.setText("["+caseModel.getPos().getX()+","+caseModel.getPos().getY()+"]");
-                 if(caseModel.getElement().clickable)
+                 if(caseModel.getElement().estClickable())
                  {
                      Soldat soldatCourant = (Soldat) caseModel.getElement();
-                     labelRace.setText(soldatCourant.getType()+" "+soldatCourant.getVie());
+                     labelRace.setText(soldatCourant.getTypeName()+" "+soldatCourant.getVie()+" portee  : "+ soldatCourant.getPortee());
                      iconCoeur.setVisible(true);
                  }
          }

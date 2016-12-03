@@ -13,12 +13,8 @@ public class CaseModel{
 
 		public boolean setElement(Object elem) {
 			// TODO Auto-generated method stub
-			if(this.element.vide)
-			{
-				this.element = (Element) elem;
-				return true;
-			}
-			return false;
+			this.element = (Element) elem;
+			return true;
 		}
 
 		public Element getElement(){

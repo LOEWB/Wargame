@@ -132,7 +132,9 @@ public class Carte implements ICarte,IConfig{
 		Position p = soldat.pos;
 		try{
 			if(grille[pos.getX()][pos.getY()].setElement(soldat)){
-				grille[p.getX()][p.getY()].setElement(null);
+				grille[p.getX()][p.getY()].setElement(new Element());
+				grille[pos.getX()][pos.getY()].getElement().setPos(pos);
+				grille[p.getX()][p.getY()].setElement(new Element());
 				return true;
 			}
 		}catch (ArrayIndexOutOfBoundsException e){

@@ -2,6 +2,7 @@ package view;
 
 import controller.ControllerFinTour;
 import model.Partie;
+import model.Position;
 
 
 public class Launcher {
@@ -17,6 +18,8 @@ public class Launcher {
         partie.addObserver(fen);
         partie.addObserver(fen.getPanneau());
         partie.lancerPartie();
+
+
         
     }
 }

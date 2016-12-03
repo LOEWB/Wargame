@@ -23,5 +23,8 @@ public class Heros extends Soldat{
 	public int getVie() {
 		return typeH.getPoints();
 	}
-	
+
+	public int getPortee(){
+		return typeH.getPortee();
+	}
 }

@@ -14,6 +14,7 @@ public class Element implements IConfig {
     public boolean vide;
 
     public Element(){
+        this.pos = pos;
         this.couleur = COULEUR_VIDE;
         this.vide = true;
     }

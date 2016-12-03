@@ -23,5 +23,9 @@ public class Monstre extends Soldat{
 	public int getVie() {
 		return typeM.getPoints();
 	}
+
+	public int getPortee(){
+		return typeM.getPortee();
+	}
 	
 }

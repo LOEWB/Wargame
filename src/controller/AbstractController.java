@@ -11,5 +11,5 @@ public abstract class AbstractController {
         this.modelPartie = p;
     }
 
-    abstract public void control();
+    abstract public void controlFinTour();
 }

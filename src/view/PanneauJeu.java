@@ -33,16 +33,23 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
     public ArrayList<Case> getListeBoutons(){
         return this.listeBoutons;
     }
+
+    /**
+     * Fonction appellée à chaque mise à jour du modèle, met à jour la grille graphiquement en fonction de la partie
+     * @param str
+     * @param o Partie en cours dans le modèle
+     */
     @Override
     public void update(String str, Object o) {
         Partie p=(Partie) o;
         CaseModel[][] grille = p.getCarte().getGrille();
 
+        //On met à jour les cases de la grille en fonction du modèle
         for(int i=0;i<LARGEUR_CARTE;i++)
         {
             for(int j=0;j<HAUTEUR_CARTE;j++)
             {
-                if(!grille[i][j].getElement().clickable)
+                if(!grille[i][j].getElement().estClickable())
                     this.listeBoutons.get(j*LARGEUR_CARTE+i).setRolloverEnabled(false);
                 else {
                     Soldat soldat = (Soldat) grille[i][j].getElement();
@@ -58,6 +65,8 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                 }
             }
         }
+
+
     }
 }
 

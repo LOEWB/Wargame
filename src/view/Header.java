@@ -20,7 +20,7 @@ public class Header extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controller.control();
+				controller.controlFinTour();
 			}
 		});
 	

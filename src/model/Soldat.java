@@ -37,6 +37,7 @@ public abstract class Soldat extends Element implements ISoldat{
 				Soldat s = (Soldat) carte.getElement(pos);
 				//si le soldat attaqué est de faction differente
 				if (!(this.estHeros() && s.estHeros())) {
+					aJoueCeTour=true;
 					return this.combat(s);
 				}
 				else
@@ -47,6 +48,7 @@ public abstract class Soldat extends Element implements ISoldat{
 				return false;
 		}
 
+		aJoueCeTour=true;
 		return carte.deplaceSoldat(pos,this);
 	}
 
@@ -62,11 +64,6 @@ public abstract class Soldat extends Element implements ISoldat{
 		return 0;
 	}
 
-	@Override
-	public int getPortee() {
-		// TODO Auto-generated method stub
-		return 2;
-	}
 
 	@Override
 	public void joueTour(int tour) {
@@ -138,6 +135,14 @@ public abstract class Soldat extends Element implements ISoldat{
 		return false;
 	}
 
+	public boolean estAPorteeDeplacement(Position posi)
+	{
+		if (posi.getX()<=(this.getPos().getX()+1) && posi.getX()>=(this.getPos().getX()-1))
+			if (posi.getY()<=(this.getPos().getY()+1) && posi.getY()>=(this.getPos().getY()-1))
+				return true;
+		return false;
+	}
+
 	public boolean estHeros(){return this.heros;}
 	public boolean estEnVie()
 	{
@@ -145,4 +150,5 @@ public abstract class Soldat extends Element implements ISoldat{
 	}
 	public abstract String getTypeName();
 	public abstract int getVie();
+	public abstract int getPortee();
 }
