@@ -7,7 +7,7 @@ public class Monstre extends Soldat{
 		super(nom);
 		this.typeM = TypesM.getTypeMAlea();
 		this.couleur = COULEUR_MONSTRES;
-		vieM=getVie();
+		vie=getVie();
 	}
 
 	@Override
@@ -19,10 +19,5 @@ public class Monstre extends Soldat{
 	public int getVie() {
 		return typeM.getPoints();
 	}
-	public int getVieCourante(){
-		return vieM;
-	}
-	public void baisserVie(){
-		vieM--;
-	}
+	
 }
