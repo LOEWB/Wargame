@@ -4,7 +4,7 @@ public class JoueurReel extends AbstractJoueur{
 
 	public JoueurReel(Partie p) {
 		super(p);
-		this.armee = new ArmeeHeros();
+		this.armee = new ArmeeHeros(p.getCarte());
 		// TODO Auto-generated constructor stub
 	}
 

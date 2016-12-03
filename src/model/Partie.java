@@ -20,11 +20,11 @@ public class Partie implements Observable{
 	}
 
 	private void initPartie() {
+		this.carte = new Carte();
 		this.joueurReel = new JoueurReel(this);
 		this.joueurIA = new JoueurIA(this);		
 		//TODO A definir aleatoirement
 		this.joueurTourCourant = this.joueurReel;
-		this.carte = new Carte();
 		
 	}
 	

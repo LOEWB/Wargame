@@ -22,7 +22,7 @@ public class Obstacle extends Element {
 		this.setPos(pos);
 		this.couleur=TYPE.COULEUR;
 		this.vide=false;
-		clickable=false;
+		setClickable(false);
 	}
 	public String toString() { return ""+TYPE; }
 }

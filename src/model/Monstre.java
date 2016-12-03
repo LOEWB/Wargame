@@ -2,17 +2,21 @@ package model;
 
 public class Monstre extends Soldat{
 	private TypesM typeM;
-	private int vieM;
-	public Monstre(String nom){
-		super(nom);
+
+	public Monstre(String nom,Carte carte){
+		super(nom,carte);
+		this.heros = false;
 		this.typeM = TypesM.getTypeMAlea();
 		this.couleur = COULEUR_MONSTRES;
 		vie=getVie();
 	}
 
 	@Override
-	public String getType() {
+	public String getTypeName() {
 		return typeM.name();
+	}
+	public TypesM getTypeM() {
+		return typeM;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import model.ISoldat.*;
  * Created by root on 11/15/16.
  */
 public class Element implements IConfig {
-    public boolean clickable=false;
+    private boolean clickable=false;
     protected Position pos;
     public static String nom;
     public Color couleur;
@@ -28,5 +28,13 @@ public class Element implements IConfig {
 
     public void setPos(Position pos) {
         this.pos = pos;
+    }
+
+    public void setClickable(boolean clickable) {
+        this.clickable = clickable;
+    }
+
+    public boolean estClickable(){
+        return this.clickable;
     }
 }

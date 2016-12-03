@@ -26,13 +26,14 @@ PUISSANCE = puissance; TIR = tir;
       public int getPoints() { return POINTS_DE_VIE; }
       public int getPortee() { return PORTEE_VISUELLE; }
       public int getPuissance() { return PUISSANCE; }
-      public int getTir() { return TIR; } 
+      public int getTir() { return TIR; }
       public static TypesM getTypeMAlea() {
          return values()[(int)(Math.random()*values().length)];
       }
    }
+
    int getPoints(); int getTour(); int getPortee();
    void joueTour(int tour);
-   void combat(Soldat soldat);
-   void seDeplace(Position newPos);
+   boolean combat(Soldat soldat);
+   void deplaceSoldat(Position newPos);
 }

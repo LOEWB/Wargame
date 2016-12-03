@@ -14,5 +14,4 @@ public interface ICarte {
 	boolean deplaceSoldat(Position pos, Soldat soldat);
 	void mort(Soldat perso);
 	boolean actionHeros(Position pos, Position pos2);
-	void jouerSoldats(PanneauJeu pj);
 }

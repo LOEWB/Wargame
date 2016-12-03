@@ -62,8 +62,14 @@ public class Carte implements ICarte,IConfig{
 
 	//Obtenu element à la position pos
 	public Element getElement(Position pos){
-		return grille[pos.getX()][pos.getY()].getElement();
+		try {
+			return grille[pos.getX()][pos.getY()].getElement();
+		}catch (ArrayIndexOutOfBoundsException e){
+			System.out.println(e.getStackTrace());
+			return null;
+		}
 	}
+
 	public Position trouvePositionVide(){
 		
 			int a = (int)(Math.random()*LARGEUR_CARTE);
@@ -120,11 +126,17 @@ public class Carte implements ICarte,IConfig{
 		}
 		return false;
 	}
+
+
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
-		Position p= soldat.pos;
-		if(grille[pos.getX()][pos.getY()].setElement(soldat)){
-			grille[p.getX()][p.getY()].setElement(null);
-			return true;
+		Position p = soldat.pos;
+		try{
+			if(grille[pos.getX()][pos.getY()].setElement(soldat)){
+				grille[p.getX()][p.getY()].setElement(null);
+				return true;
+			}
+		}catch (ArrayIndexOutOfBoundsException e){
+			return false;
 		}
 		return false;
 	}

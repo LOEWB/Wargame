@@ -4,12 +4,18 @@ package model;
 public abstract class Soldat extends Element implements ISoldat{
 
 	protected String num;
+	protected boolean enVie =true;
 	protected boolean aJoueCeTour;
 	protected int vie;
-	public Soldat(String nom){
+	protected int pointsDeVie;
+	protected Carte carte;
+	protected boolean heros;
+
+	public Soldat(String nom, Carte carte){
+		this.carte=carte;
 		this.num = nom;
 		vide = false;
-		clickable=true;
+		this.setClickable(true);
 	}
 
 	public void setPos(Position pos) {
@@ -19,12 +25,33 @@ public abstract class Soldat extends Element implements ISoldat{
 	public Position getPos() {
 		return this.pos;
 	}
-	@Override
+
+
 	/**
-	 * 
-	 * huhk
-	 */
-	public int getPoints() {
+	 * @param pos position du héros à attaquer/case sur laquelle aller
+	 * @return boolean -> True si l'attaque/déplacement s'est effectué, false sinon
+     */
+	public boolean actionHeros(Position pos) {
+		if(!carte.getElement(pos).vide) {
+			if (carte.getElement(pos).estClickable()) {
+				Soldat s = (Soldat) carte.getElement(pos);
+				//si le soldat attaqué est de faction differente
+				if (!(this.estHeros() && s.estHeros())) {
+					return this.combat(s);
+				}
+				else
+					return false;
+			}
+			//si on essaye de se déplacer sur un obstacle
+			else
+				return false;
+		}
+
+		return carte.deplaceSoldat(pos,this);
+	}
+
+	@Override
+		public int getPoints() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
@@ -47,22 +74,52 @@ public abstract class Soldat extends Element implements ISoldat{
 		
 	}
 
+	/**
+	 *
+	 * @param soldat à attaquer
+	 * @return true si attaque effectuee false si erreur
+     */
 	@Override
-	public void combat(Soldat soldat) {
-		// TODO Auto-generated method stub
+	public boolean combat(Soldat soldat) {
+		Monstre monstre;
+		Heros heros;
+		try{
+			if(this.heros) {
+				heros = (Heros) this;
+				if(this.estAPortee(soldat.getPos()))
+					soldat.baisserVie((int)Math.random()*heros.getTypeH().getPuissance());
+			}
+			else
+			{
+				monstre = (Monstre) this;
+				if(this.estAPortee(soldat.getPos()))
+					soldat.baisserVie((int)Math.random()*monstre.getTypeM().getPuissance());
+			}
+
+			return true;
+		}catch (Exception e)
+		{
+			System.out.println(e.getStackTrace());
+			return false;
+		}
 		
 	}
 
 	@Override
-	public void seDeplace(Position newPos) {
-		// TODO Auto-generated method stub
-		
+	public void deplaceSoldat(Position newPos) {
+		this.carte.deplaceSoldat(newPos,this);
 	}
+
 	public int getVieCourante(){
-		return vie;
+		return pointsDeVie;
 	}
-	public void baisserVie(){
-		vie--;
+
+
+	public void baisserVie(int points){
+		if(this.pointsDeVie > 0)
+			this.vie-=points;
+		if(this.pointsDeVie <= 0)
+			this.enVie =false;
 	}
 	public void setAJoueCeTour(boolean bool)
 	{
@@ -81,6 +138,11 @@ public abstract class Soldat extends Element implements ISoldat{
 		return false;
 	}
 
-	public abstract String getType();
+	public boolean estHeros(){return this.heros;}
+	public boolean estEnVie()
+	{
+		return this.enVie;
+	}
+	public abstract String getTypeName();
 	public abstract int getVie();
 }

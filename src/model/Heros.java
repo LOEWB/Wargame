@@ -1,22 +1,22 @@
 package model;
 
-/*
- * 
- */
-
 public class Heros extends Soldat{
 
 	TypesH typeH;
 	
-	public Heros(String nom){
-		super(nom);
+	public Heros(String nom, Carte carte){
+		super(nom,carte);
+		this.heros=true;
 		this.typeH = TypesH.getTypeHAlea();
 		this.couleur = COULEUR_HEROS;
 		vie=getVie();
 	}
 
-	public String getType() {
+	public String getTypeName() {
 		return typeH.name();
+	}
+	public TypesH getTypeH() {
+		return typeH;
 	}
 
 

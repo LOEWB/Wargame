@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Armee implements IConfig{
     protected ArrayList<Soldat> listeSoldats;
+    protected Carte carte;
     public Armee(){
         this.listeSoldats=new ArrayList<Soldat>();
     }
