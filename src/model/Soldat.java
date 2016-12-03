@@ -5,7 +5,7 @@ public abstract class Soldat extends Element implements ISoldat{
 
 	protected String num;
 	protected boolean aJoueCeTour;
-
+	protected int vie;
 	public Soldat(String nom){
 		this.num = nom;
 		vide = false;
@@ -58,7 +58,12 @@ public abstract class Soldat extends Element implements ISoldat{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public int getVieCourante(){
+		return vie;
+	}
+	public void baisserVie(){
+		vie--;
+	}
 	public void setAJoueCeTour(boolean bool)
 	{
 		this.aJoueCeTour=bool;

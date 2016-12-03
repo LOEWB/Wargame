@@ -26,7 +26,7 @@ public class Carte implements ICarte,IConfig{
 			grille[p.getX()][p.getY()].setElement(new Obstacle(p));
 		}
 	}
-	//Placement des Heros
+	//Placement des Heros sur la carte
 	public void placeHeros(ArmeeHeros armeeHeros){
 		for(int i=0; i<armeeHeros.getListeSoldats().size();i++){
 			int x = (int)(Math.random()*(LARGEUR_CARTE/2-1));
@@ -74,36 +74,59 @@ public class Carte implements ICarte,IConfig{
 			} 
 			return new Position(a,b);
 	}
+
 	public Heros trouveHeros(Position pos){
-		return null ;
+		int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
+		int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		while(grille[i][j].getElement().couleur!=COULEUR_HEROS){
+			i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
+			j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		} 
+		return  (Heros)grille[i][j].getElement();
 	}
 	public Position trouvePositionVide(Position pos){
-		return null;
+		int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
+		int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		while(grille[i][j].getElement()!=null){
+			i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
+			j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		} 
+		return new Position(i,j);
 	}
 	public Heros trouveHeros(){
-		return null;
+		int a = (int)(Math.random()*LARGEUR_CARTE);
+		int b = (int)(Math.random()*HAUTEUR_CARTE);
+		while(grille[a][b].getElement().couleur!=COULEUR_HEROS){
+			a = (int)(Math.random()*LARGEUR_CARTE);
+			b = (int)(Math.random()*HAUTEUR_CARTE);
+		} 
+		return (Heros) grille[a][b].getElement();
 	}
-	public boolean deplaceSoldat(Position pos, Soldat soldat){
-		if(grille[pos.getX()][pos.getY()].setElement(soldat)) return true;
-		return false;
-	}
-	public void mort(Soldat perso){
-		if(perso.getPoints()==0){
-			//grille[perso.getPos().getX()][perso.getPos().getY()].getElement()=null;
-			//NB_HEROS--;
+	public void mort(Soldat soldat){
+		if(soldat.getPoints()==0){
+			grille[soldat.getPos().getX()][soldat.getPos().getY()].setElement(null);
 		}
 	}
 	public boolean actionHeros(Position pos, Position pos2){
-		/*if(grille[pos.getX()][pos.getY()].element.typeh==null)
+		if(grille[pos.getX()][pos.getY()].getElement().couleur!=COULEUR_HEROS)
 			return false ;
-		if(grille[pos2.getX()][pos2.getY()].element.typeh==null) 
-			return deplaceSoldat(pos2,(Soldat)grille[pos.getX()][pos.getY()].element);
-		if(grille[pos2.getX()][pos2.getY()].element.typem!=null)
-			((Soldat)grille[pos.getX()][pos.getY()].element).combat((Soldat)grille[pos2.getX()][pos2.getY()].element);*/
-	return true;
+		if(grille[pos2.getX()][pos2.getY()].getElement()==null){ 
+			deplaceSoldat(pos2,(Soldat)grille[pos.getX()][pos.getY()].getElement());
+			return true;
+		}
+		if(grille[pos2.getX()][pos2.getY()].getElement().couleur==COULEUR_MONSTRES){
+			((Soldat)grille[pos.getX()][pos.getY()].getElement()).combat((Soldat)grille[pos2.getX()][pos2.getY()].getElement());
+			return true;
+		}
+		return false;
 	}
-	public void jouerSoldats(PanneauJeu pj){
-		
+	public boolean deplaceSoldat(Position pos, Soldat soldat){
+		Position p= soldat.pos;
+		if(grille[pos.getX()][pos.getY()].setElement(soldat)){
+			grille[p.getX()][p.getY()].setElement(null);
+			return true;
+		}
+		return false;
 	}
 
 	public CaseModel[][] getGrille() {
