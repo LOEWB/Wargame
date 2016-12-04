@@ -64,6 +64,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                         if(soldat.estHeros()){
                             herosDepart = (Heros) soldat;
                             System.out.println("depart "+this.indice);
+                            panneau.glowCasesPortee(herosDepart);
                         }
 
                     }
@@ -72,6 +73,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     panneau.setCursor(panneau.CURSEUR);
+                    panneau.unglowCasesPortee();
                     super.mouseReleased(e);
                     if (herosDepart != null) {
                         if (partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().vide) {
@@ -80,9 +82,12 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                                 controller.controlActionJoueur(herosDepart, positionEntered);
                             }
                         }else if (partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().estClickable()) {
-                            if (herosDepart.estAPortee(positionEntered)) {
-                                System.out.println("Attaque en " + positionEntered);
-                                controller.controlActionJoueur(herosDepart, positionEntered);
+                            if (herosDepart.estAPortee(positionEntered) && (!((herosDepart.getPos().getX()==positionEntered.getX())&&(herosDepart.getPos().getY()==positionEntered.getY())))) {
+                                if(!herosDepart.getAjoueCeTour()) {
+                                    System.out.println("Attaque en " + positionEntered + " " + herosDepart.getPos());
+                                    controller.controlActionJoueur(herosDepart, positionEntered);
+                                    panneau.explosion(positionEntered);
+                                }
                             }
 
                         }
@@ -103,14 +108,15 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                         {
                             Soldat s = (Soldat) elem;
                             if(!s.estHeros()){
-                                if(herosDepart.estAPortee(positionEntered))
+                                if(herosDepart.getAjoueCeTour())
+                                    panneau.setCursor(panneau.CURSEUR_STOP);
+                                else if(herosDepart.estAPortee(positionEntered))
                                     panneau.setCursor(panneau.CURSEUR_ATTACK);
                             }
                         }
                         else if(elem.vide)
                         {
-                            System.out.println(herosDepart.getPos()!=positionEntered);
-                            if(herosDepart.estAPorteeDeplacement(positionEntered)&&(herosDepart.getPos()!=positionEntered))
+                            if(herosDepart.estAPorteeDeplacement(positionEntered)&&(!((herosDepart.getPos().getX()==positionEntered.getX())&&(herosDepart.getPos().getY()==positionEntered.getY())))&&!herosDepart.getAjoueCeTour())
                                 panneau.setCursor(panneau.CURSEUR_MOVE);
                             else
                                 panneau.setCursor(panneau.CURSEUR_STOP);
@@ -166,4 +172,5 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
         else
             header.eteindreBoutonFinTour();
     }
+
 }

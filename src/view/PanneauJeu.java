@@ -1,21 +1,27 @@
 package view;
 
-import model.CaseModel;
-import model.IConfig;
-import model.Partie;
-import model.Soldat;
+import javafx.geometry.Pos;
+import model.*;
 import observer.Observer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 
 public class PanneauJeu extends JPanel implements Observer, IConfig {
 
     private final ArrayList<Case> listeBoutons = new ArrayList<Case>();
+    private CaseModel[][] grille=new CaseModel[HAUTEUR_CARTE][LARGEUR_CARTE];
 
     public final static String CURSEUR = "/ressources/curseur.png";
     public final static String CURSEUR_MOVE = "/ressources/curseur_move.png";
@@ -50,7 +56,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
     @Override
     public void update(String str, Object o) {
         Partie p=(Partie) o;
-        CaseModel[][] grille = p.getCarte().getGrille();
+        this.grille=p.getCarte().getGrille();
 
         //On met à jour les cases de la grille en fonction du modèle
         for(int i=0;i<LARGEUR_CARTE;i++)
@@ -73,6 +79,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                     if(!p.getJoueurReel().getArmee().estAPortee(grille[i][j].getPos()))
                         this.listeBoutons.get(j*LARGEUR_CARTE+i).setBackground(COULEUR_INCONNU);
                 }
+                this.listeBoutons.get(j*LARGEUR_CARTE+i).setBorder(new LineBorder(new Color(0x565255),1));
             }
         }
 
@@ -91,5 +98,59 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
 
         }
     }
+
+    public void explosion (Position pos){
+        final Position posi = pos;
+        final Icon ancienIcon = this.listeBoutons.get(pos.getY() * LARGEUR_CARTE + pos.getX()).getIcon();
+        java.net.URL imgURL = getClass().getResource("/ressources/explosion.gif");
+        if (imgURL != null) {
+
+            this.listeBoutons.get(pos.getY() * LARGEUR_CARTE + pos.getX()).setIcon(new ImageIcon(imgURL));
+            Timer timer = new Timer(500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    listeBoutons.get(posi.getY() * LARGEUR_CARTE + posi.getX()).setIcon(ancienIcon);
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+        } else {
+            System.err.println("Couldn't find file: " + "/ressources/explosion.gif");
+        }
+    }
+
+    public void glowCasesPortee(Heros h){
+        for(int i=0;i<LARGEUR_CARTE;i++) {
+            for (int j = 0; j < HAUTEUR_CARTE; j++) {
+                if(h.estAPortee(new Position(i,j)))
+                {
+                    if(grille[i][j].getElement().estClickable()){
+                        Soldat s = (Soldat)grille[i][j].getElement();
+                        if(!s.estHeros()){
+                            this.listeBoutons.get(j*LARGEUR_CARTE+i).setBorder(new LineBorder(new Color(0xF8000C),2));
+                        }
+                    }
+                    else
+                    {
+                        if(h.estAPorteeDeplacement(new Position(i,j))){
+                            this.listeBoutons.get(j*LARGEUR_CARTE+i).setBorder(new LineBorder(new Color(0xF8D02A),2));
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    public void unglowCasesPortee(){
+        for(int i=0;i<LARGEUR_CARTE;i++) {
+            for (int j = 0; j < HAUTEUR_CARTE; j++) {
+                this.listeBoutons.get(j*LARGEUR_CARTE+i).setBorder(new LineBorder(new Color(0x565255),1));
+            }
+        }
+    }
+
+
 }
 
