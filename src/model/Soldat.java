@@ -84,13 +84,13 @@ public abstract class Soldat extends Element implements ISoldat{
 			if(this.heros) {
 				heros = (Heros) this;
 				if(this.estAPortee(soldat.getPos()))
-					soldat.baisserVie((int)Math.random()*heros.getTypeH().getPuissance());
+					soldat.baisserVie((int)(Math.random()*heros.getTypeH().getPuissance())+1);
 			}
 			else
 			{
 				monstre = (Monstre) this;
 				if(this.estAPortee(soldat.getPos()))
-					soldat.baisserVie((int)Math.random()*monstre.getTypeM().getPuissance());
+					soldat.baisserVie((int)(Math.random()*monstre.getTypeM().getPuissance())+1);
 			}
 
 			return true;
@@ -114,13 +114,19 @@ public abstract class Soldat extends Element implements ISoldat{
 
 	public void baisserVie(int points){
 		if(this.pointsDeVie > 0)
-			this.vie-=points;
-		if(this.pointsDeVie <= 0)
-			this.enVie =false;
+			this.pointsDeVie-=points;
+		if(this.pointsDeVie <= 0) {
+			this.enVie = false;
+			mort();
+		}
 	}
 	public void setAJoueCeTour(boolean bool)
 	{
 		this.aJoueCeTour=bool;
+	}
+
+	public boolean getAjoueCeTour(){
+		return aJoueCeTour;
 	}
 
 	public String getNum() {
@@ -141,6 +147,10 @@ public abstract class Soldat extends Element implements ISoldat{
 			if (posi.getY()<=(this.getPos().getY()+1) && posi.getY()>=(this.getPos().getY()-1))
 				return true;
 		return false;
+	}
+
+	public void mort(){
+		this.carte.getGrille()[this.getPos().getX()][this.getPos().getY()].setElement(new Element());
 	}
 
 	public boolean estHeros(){return this.heros;}

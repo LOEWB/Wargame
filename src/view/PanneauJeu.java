@@ -9,12 +9,19 @@ import observer.Observer;
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
 public class PanneauJeu extends JPanel implements Observer, IConfig {
 
     private final ArrayList<Case> listeBoutons = new ArrayList<Case>();
+
+    public final static String CURSEUR = "/ressources/curseur.png";
+    public final static String CURSEUR_MOVE = "/ressources/curseur_move.png";
+    public final static String CURSEUR_ATTACK = "/ressources/curseur_attack.png";
+    public final static String CURSEUR_STOP = "/ressources/curseur_stop.png";
+    public final static String CURSEUR_TIME = "/ressources/curseur_time.png";
 
 	public PanneauJeu(int nbCol, int nbLignes){
 		this.setLayout(new GridLayout(nbLignes,nbCol));
@@ -28,6 +35,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
                 this.add(c);
             }
         }
+        setCursor(CURSEUR);
 	}
 
     public ArrayList<Case> getListeBoutons(){
@@ -69,6 +77,19 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         }
 
 
+    }
+
+    public void setCursor(String lienCurseur) {
+        try{
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Image curseurImage;
+            curseurImage = ImageIO.read(getClass().getResource(lienCurseur));
+            Point hotspot = new Point(0,0);
+            Cursor cursor = toolkit.createCustomCursor(curseurImage,hotspot,"Stone");
+            this.setCursor(cursor);
+        }catch (Exception e){
+
+        }
     }
 }
 

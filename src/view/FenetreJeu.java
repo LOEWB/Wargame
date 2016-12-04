@@ -71,14 +71,24 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
+                    panneau.setCursor(panneau.CURSEUR);
                     super.mouseReleased(e);
-                    if(herosDepart!=null)
-                        if(partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().vide)
-                            if(herosDepart.estAPorteeDeplacement(positionEntered)) {
+                    if (herosDepart != null) {
+                        if (partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().vide) {
+                            if (herosDepart.estAPorteeDeplacement(positionEntered)) {
                                 System.out.println("Déplacé en " + positionEntered);
-                                controller.controlActionJoueur(herosDepart,positionEntered);
+                                controller.controlActionJoueur(herosDepart, positionEntered);
                             }
-                    herosDepart=null;
+                        }else if (partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().estClickable()) {
+                            if (herosDepart.estAPortee(positionEntered)) {
+                                System.out.println("Attaque en " + positionEntered);
+                                controller.controlActionJoueur(herosDepart, positionEntered);
+                            }
+
+                        }
+
+                        herosDepart = null;
+                    }
                 }
 
                 @Override
@@ -86,6 +96,30 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                     footer.notifierHoverCase(partie.getCarte().getGrille()[indice%LARGEUR_CARTE][indice/LARGEUR_CARTE]);
 
                     positionEntered = new Position(indice%LARGEUR_CARTE,indice/LARGEUR_CARTE);
+
+                    Element elem = partie.getCarte().getGrille()[indice%LARGEUR_CARTE][indice/LARGEUR_CARTE].getElement();
+                    if(herosDepart!=null){
+                        if(elem.estClickable())
+                        {
+                            Soldat s = (Soldat) elem;
+                            if(!s.estHeros()){
+                                if(herosDepart.estAPortee(positionEntered))
+                                    panneau.setCursor(panneau.CURSEUR_ATTACK);
+                            }
+                        }
+                        else if(elem.vide)
+                        {
+                            System.out.println(herosDepart.getPos()!=positionEntered);
+                            if(herosDepart.estAPorteeDeplacement(positionEntered)&&(herosDepart.getPos()!=positionEntered))
+                                panneau.setCursor(panneau.CURSEUR_MOVE);
+                            else
+                                panneau.setCursor(panneau.CURSEUR_STOP);
+                        }
+                        else
+                        {
+                            panneau.setCursor(panneau.CURSEUR);
+                        }
+                    }
                 }
 
                 @Override

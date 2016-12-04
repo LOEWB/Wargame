@@ -10,6 +10,7 @@ public class Heros extends Soldat{
 		this.typeH = TypesH.getTypeHAlea();
 		this.couleur = COULEUR_HEROS;
 		vie=getVie();
+		this.pointsDeVie=vie;
 	}
 
 	public String getTypeName() {

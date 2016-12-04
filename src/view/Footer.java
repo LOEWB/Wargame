@@ -14,6 +14,7 @@ package view;
          private JLabel iconCoeur;
 
              public Footer(ControllerFinTour controller) {
+                 this.setPreferredSize(new Dimension(200,30));
                  labelPosition = new JLabel();
                  labelPosition.setPreferredSize(new Dimension(200,20));
                  labelRace = new JLabel();
@@ -25,7 +26,7 @@ package view;
                  } else {
                      System.err.println("Couldn't find file: " + "/ressources/heart.png");
                  }
-                 iconCoeur.setPreferredSize(new Dimension(200,20));
+                 iconCoeur.setPreferredSize(new Dimension(200,30));
 
                  GridBagLayout layout = new GridBagLayout();
                  GridBagConstraints c = new GridBagConstraints();
@@ -45,7 +46,7 @@ package view;
                  if(caseModel.getElement().estClickable())
                  {
                      Soldat soldatCourant = (Soldat) caseModel.getElement();
-                     labelRace.setText(soldatCourant.getTypeName()+" "+soldatCourant.getVie()+" portee  : "+ soldatCourant.getPortee());
+                     labelRace.setText(soldatCourant.getTypeName()+" "+soldatCourant.getVieCourante()+"/"+soldatCourant.getVie()+" portee  : "+ soldatCourant.getPortee());
                      iconCoeur.setVisible(true);
                  }
          }

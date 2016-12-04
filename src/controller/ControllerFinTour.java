@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.geometry.Pos;
 import model.*;
 
 public class ControllerFinTour extends AbstractController {
@@ -16,8 +15,12 @@ public class ControllerFinTour extends AbstractController {
 
     public void controlActionJoueur(Heros heros, Position posElem){
         if (this.modelPartie.getJoueurTourCourant() == this.modelPartie.getJoueurReel()) {
-            heros.actionHeros(posElem);
-            this.modelPartie.notifyObserver("");
+            if(!heros.getAjoueCeTour())
+            {
+                heros.actionHeros(posElem);
+                this.modelPartie.notifyObserver("");
+            }
+
         }
     }
 }
