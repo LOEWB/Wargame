@@ -7,7 +7,7 @@ public class Monstre extends Soldat{
 		super(nom,carte);
 		this.heros = false;
 		this.typeM = TypesM.getTypeMAlea();
-		this.couleur = COULEUR_MONSTRES;
+		this.texture = typeM.getTexture();
 		vie=getVie();
 		this.pointsDeVie=vie;
 	}

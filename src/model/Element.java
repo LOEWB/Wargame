@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Color;
 
-import model.ISoldat.*;
 /**
  * Created by root on 11/15/16.
  */
@@ -10,12 +9,11 @@ public class Element implements IConfig {
     private boolean clickable=false;
     protected Position pos;
     public static String nom;
-    public Color couleur;
+    public String texture;
     public boolean vide;
-
     public Element(){
         this.pos = pos;
-        this.couleur = COULEUR_VIDE;
+        this.texture = TEXTURE_VIDE;
         this.vide = true;
     }
 

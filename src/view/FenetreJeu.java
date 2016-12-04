@@ -14,8 +14,8 @@ import java.awt.event.MouseWheelEvent;
 
 public class FenetreJeu extends JFrame implements IConfig,Observer{
 	public final static String TITRE_FENETRE = "Wargame";
-	public final static int LARGEUR_FENETRE = 1150;
-	public final static int HAUTEUR_FENETRE = 750;
+	public final static int LARGEUR_FENETRE = 1320;
+	public final static int HAUTEUR_FENETRE = 880;
     private PanneauJeu panneau;
     private Header header;
     private Footer footer;
@@ -33,6 +33,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
     	this.setTitle(TITRE_FENETRE);
         this.setSize(new Dimension(LARGEUR_FENETRE,HAUTEUR_FENETRE));
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         panneau = new PanneauJeu(LARGEUR_CARTE,HAUTEUR_CARTE);
         this.getContentPane().add(panneau);
@@ -84,9 +85,13 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                         }else if (partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement().estClickable()) {
                             if (herosDepart.estAPortee(positionEntered) && (!((herosDepart.getPos().getX()==positionEntered.getX())&&(herosDepart.getPos().getY()==positionEntered.getY())))) {
                                 if(!herosDepart.getAjoueCeTour()) {
-                                    System.out.println("Attaque en " + positionEntered + " " + herosDepart.getPos());
-                                    controller.controlActionJoueur(herosDepart, positionEntered);
-                                    panneau.explosion(positionEntered);
+
+                                    Soldat s = (Soldat) partie.getCarte().getGrille()[positionEntered.getX()][positionEntered.getY()].getElement();
+                                    if(!s.estHeros()) {
+                                        System.out.println("Attaque en " + positionEntered + " " + herosDepart.getPos());
+                                        controller.controlActionJoueur(herosDepart, positionEntered);
+                                        panneau.explosion(positionEntered);
+                                    }
                                 }
                             }
 

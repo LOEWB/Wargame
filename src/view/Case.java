@@ -12,6 +12,7 @@ public class Case extends JButton {
 
     public Case(int x, int y){
         super();
+        this.setPreferredSize(new Dimension(50,50));
         this.pos = new PositionView(x,y);
     }
 }

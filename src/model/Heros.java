@@ -8,7 +8,7 @@ public class Heros extends Soldat{
 		super(nom,carte);
 		this.heros=true;
 		this.typeH = TypesH.getTypeHAlea();
-		this.couleur = COULEUR_HEROS;
+		this.texture = typeH.getTexture();
 		vie=getVie();
 		this.pointsDeVie=vie;
 	}
