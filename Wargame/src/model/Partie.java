@@ -5,21 +5,24 @@ import java.util.Collection;
 
 import observer.Observable;
 import observer.Observer;
+import view.PanneauJeu;
 
 public class Partie implements Observable{
 	
 	private AbstractJoueur joueurTourCourant;
 	private JoueurReel joueurReel;
 	private JoueurIA joueurIA;
+	private Carte carte;
+	//PanneauJeu panneau;
 	private boolean partieEnCours = false;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>(); 
 
 	public Partie(){
 		initPartie();
-		
 	}
 
 	private void initPartie() {
+		this.carte = new Carte();
 		this.joueurReel = new JoueurReel(this);
 		this.joueurIA = new JoueurIA(this);		
 		//TODO A definir aleatoirement
@@ -28,7 +31,11 @@ public class Partie implements Observable{
 	}
 	
 	public void lancerPartie(){
+		this.carte.placeObstacles();
+		this.carte.placeHeros((ArmeeHeros) this.joueurReel.getArmee());
+		this.carte.placeMonstres((ArmeeMonstres) this.joueurIA.getArmee());
 		this.partieEnCours = true;
+		this.notifyObserver("");
 		while(this.partieEnCours){
 			this.joueurReel.jouerTour();
 			this.notifyObserver("");
@@ -37,7 +44,7 @@ public class Partie implements Observable{
 		}
 	}
 	/**
-	 * notification appelée par un des joueurs pour signaler la fin de son tour
+	 * notification appelï¿½e par un des joueurs pour signaler la fin de son tour
 	 */
 	public void notificationFinDeTour(){
 		if(this.joueurTourCourant == joueurReel)
@@ -47,7 +54,7 @@ public class Partie implements Observable{
 	}
 	
 	/**
-	 * notification appelée par un des joueurs pour signaler qu'il est mort
+	 * notification appelï¿½e par un des joueurs pour signaler qu'il est mort
 	 */
 	public void notificationFinDeJeu(){
 		this.partieEnCours = false;
@@ -61,6 +68,12 @@ public class Partie implements Observable{
 		return joueurReel;
 	}
 
+	public Carte getCarte() {
+		return carte;
+	}
+	public void setCarte(Carte c){
+		this.carte=c;
+	}
 	public JoueurIA getJoueurIA() {
 		return joueurIA;
 	}
@@ -69,22 +82,28 @@ public class Partie implements Observable{
 		return partieEnCours;
 	}
 
-	@Override
+	//@Override
 	public void addObserver(Observer obs) {
 		this.listObserver.add(obs);
 		
 	}
 
-	@Override
+	//@Override
 	public void removeObserver() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
 	public void notifyObserver(String str) {
 		for(Observer obs : listObserver)
-			obs.update("");
+			obs.update("",this);
 	}
+
+	//@Override
+	public void notifyObserverExplosion(Position str) {
+		for(Observer obs : listObserver)
+			obs.update("explision",str);
+	}
+	
+	//public void 
 }
 
