@@ -7,12 +7,23 @@ package view;
 
      import javax.swing.*;
      import java.awt.*;
-
+     /**
+      * @author: KOMA NIANFO LOEW
+      * @version : 1.0
+      */
      public class Footer extends JPanel {
+    	 /**
+    	  * labelPosition
+    	  *  labelRace
+    	  *  iconCoeur
+    	  */
          private JLabel labelPosition;
          private JLabel labelRace;
          private JLabel iconCoeur;
-
+         /**
+          * Footer
+          * @param controller
+          */
              public Footer(ControllerFinTour controller) {
                  this.setPreferredSize(new Dimension(200,30));
                  labelPosition = new JLabel();
@@ -40,7 +51,11 @@ package view;
 
 
          }
-
+             /**
+              * notifierHoverCase
+              * 
+              * @param caseModel
+              */
              public void notifierHoverCase(CaseModel caseModel){
                  labelPosition.setText("["+caseModel.getPos().getX()+","+caseModel.getPos().getY()+"]");
                  if(caseModel.getElement().estClickable())

@@ -1,6 +1,11 @@
 package model;
 
 public interface ISoldat {
+	/**
+	 * enum TypesH
+	 * enum TypesM 
+	 *
+	 */
    static enum TypesH {
       HUMAIN (40,3,10,2,"/ressources/texture_humain.png"), NAIN (80,1,20,0,"/ressources/texture_nain.png"), ELF (70,5,10,6,"/ressources/texture_elf.png"), HOBBIT (20,3,5,2,"/ressources/texture_hobbit.png");
       private final int POINTS_DE_VIE, PORTEE_VISUELLE, PUISSANCE, TIR;

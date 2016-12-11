@@ -1,6 +1,12 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Position implements IConfig {
+	/**
+	 * 
+	 */
 	private int x, y;
 	public Position(int x, int y) { this.x = x; this.y = y; }
 	public int getX() { return x; }

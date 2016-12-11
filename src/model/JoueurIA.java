@@ -2,16 +2,25 @@ package model;
 import java.util.ArrayList;
 import view.PanneauJeu;
 import java.util.concurrent.TimeUnit;
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 
 public class JoueurIA extends AbstractJoueur implements IConfig{
-
+/**
+ * JoueuriA:
+ * @param p
+ */
 	public JoueurIA(Partie p) {
 		super(p);
 		this.armee = new ArmeeMonstres(p.getCarte());
 	}
 
 	
-	
+	/**
+	 * jouerTour
+	 */
 	@Override
 	public void jouerTour() {
 		this.armee.initDebutTour();
@@ -24,7 +33,7 @@ public class JoueurIA extends AbstractJoueur implements IConfig{
 					if((this.partie.getCarte().getElement(new Position(x,y))).estHeros()){
 						if(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).estAPortee(new Position(x,y))){
 							if(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).combat((Soldat)this.partie.getCarte().getElement(new Position(x,y)))){
-								this.partie.notifyObserverExplosion(((Soldat)this.partie.getCarte().getElement(new Position(x,y))).getPos());
+								this.partie.notifyObserverExplosion((this.partie.getCarte().getElement(new Position(x,y))).getPos());
 								if(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).getPortee()<=0){
 									this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).mort();
 								}
@@ -40,11 +49,7 @@ public class JoueurIA extends AbstractJoueur implements IConfig{
 						for(int y=0; y<HAUTEUR_CARTE;y++){
 							if(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).estAPorteeDeplacement(new Position(x,y))){
 								if(!this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).deplace){
-									Position p=new Position(0,0);	
-								 //p.setX(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).getPos().getX());
-								// p.setY(this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).getPos().getY());
-								//Position	p1=this.partie.getCarte().trouvePositionVide(p);
-								//System.out.print(",x :"+p.getX()+" y:"+p.getY());
+					
 									try{
 										this.partie.getJoueurIA().getArmee().getListeSoldats().get(i).deplaceSoldat(new Position(x,y));
 										this.partie.notifyObserver("");
@@ -77,6 +82,7 @@ public class JoueurIA extends AbstractJoueur implements IConfig{
 	}
 
 	@Override
+	
 	public void ajouterPartie(Partie p) {
 		// TODO Auto-generated method stub
 		

@@ -1,9 +1,18 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Heros extends Soldat{
-
+/**
+ * typeH
+ */
 	TypesH typeH;
-	
+	/**
+	 * Heros:
+	 * @param nom
+	 * @param carte
+	 */
 	public Heros(String nom, Carte carte){
 		super(nom,carte);
 		this.heros=true;
@@ -12,7 +21,9 @@ public class Heros extends Soldat{
 		vie=getVie();
 		this.pointsDeVie=vie;
 	}
-
+/**
+ * getTypeName
+ */
 	public String getTypeName() {
 		return typeH.name();
 	}

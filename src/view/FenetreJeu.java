@@ -11,7 +11,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class FenetreJeu extends JFrame implements IConfig,Observer{
 	public final static String TITRE_FENETRE = "Wargame";
 	public final static int LARGEUR_FENETRE = 1320;
@@ -23,12 +26,19 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
     private static int index;
     private static model.Heros herosDepart;
     private static model.Position positionEntered;
- 
+    /**
+     * FenetreJeu:
+     * @param controller
+     * @param partie
+     */
     public FenetreJeu(ControllerFinTour controller, Partie partie){
         this.partie = partie;
         initFenetreJeu(controller);
     }
-
+    /**
+     * initFenetreJeu
+     * @param controller
+     */
     public void initFenetreJeu(final ControllerFinTour controller){
     	this.setTitle(TITRE_FENETRE);
         this.setSize(new Dimension(LARGEUR_FENETRE,HAUTEUR_FENETRE));
@@ -169,6 +179,11 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
 	}
 
    // @Override
+	/**
+	 * update:
+	 * @param str
+	 * @param o
+	 */
     public void update(String str, Object o) {
     	if(str.equals("explision")){
     		panneau.explosion((Position)o);

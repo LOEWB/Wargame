@@ -1,6 +1,10 @@
 package model;
 
 import java.awt.Graphics;
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 
 import view.PanneauJeu;
 public interface ICarte {

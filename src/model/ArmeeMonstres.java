@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class ArmeeMonstres extends Armee{
     public ArmeeMonstres(Carte carte){
         super();

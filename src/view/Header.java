@@ -16,7 +16,10 @@ public class Header extends JPanel{
 	private JButton enregistrerTour;
 	private Launcher launch;
 	private ControllerFinTour controller;
-
+	/**
+	 *  Header
+	 * @param control
+	 */
 	public Header(ControllerFinTour control){
 		
 		redemarrerTour = new JButton("REDEMARRER");

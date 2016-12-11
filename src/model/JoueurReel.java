@@ -1,7 +1,13 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class JoueurReel extends AbstractJoueur{
-
+/**
+ * JoueurTour:
+ * @param p
+ */
 	public JoueurReel(Partie p) {
 		super(p);
 		this.armee = new ArmeeHeros(p.getCarte());
@@ -9,6 +15,9 @@ public class JoueurReel extends AbstractJoueur{
 	}
 
 	@Override
+	/**
+	 * jouerTour
+	 */
 	public void jouerTour() {
 		System.out.println("A vous de jouer");
 		this.armee.initDebutTour();

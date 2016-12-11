@@ -5,12 +5,13 @@ import controller.ControllerFinTour;
 import model.Partie;
 import model.Position;
 import java.util.Observable;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 
 public class Launcher  {
-	//Partie partie;
 	
-	//Launcher launche;
     public static void main(String args[]){
         System.out.println("started");
         
@@ -26,6 +27,9 @@ public class Launcher  {
         
         
     }
+    /**
+     * redemarrerPartie
+     */
     public void redemarrerPartie(){
     	Partie partie1 = new Partie();
   

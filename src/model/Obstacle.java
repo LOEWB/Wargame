@@ -1,8 +1,16 @@
 package model;
 
 import java.awt.Color;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Obstacle extends Element {
+	/**
+	 * 
+	 * enum TypeObstacle
+	 *
+	 */
 	public enum TypeObstacle {
 		ROCHER (TEXTURE_ROCHER), FORET (TEXTURE_FORET), EAU (TEXTURE_EAU);
 
@@ -12,7 +20,14 @@ public class Obstacle extends Element {
 			return values()[(int)(Math.random()*values().length)];
 		}
 	}
+	/**
+	 * Type
+	 */
 	private TypeObstacle TYPE;
+	/**
+	 * Obstacle
+	 * @param pos
+	 */
 	Obstacle(Position pos) {
 		TYPE = TypeObstacle.getObstacleAlea();
 		this.setPos(pos);

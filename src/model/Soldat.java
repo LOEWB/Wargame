@@ -7,9 +7,19 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public abstract class Soldat extends Element implements ISoldat{
-
+/**
+ * num,enVie
+ * aJoueCeTour,
+ * pointsDeVie,
+ * carte
+ * combatM
+ * deplace
+ */
 	protected String num;
 	protected boolean enVie =true;
 	protected boolean aJoueCeTour;
@@ -18,15 +28,20 @@ public abstract class Soldat extends Element implements ISoldat{
 	protected Carte carte;
 	boolean combatM=false;
 	boolean deplace=false;
-	//protected boolean heros;
-	//protected boolean monstre;
+	/**
+	 * Soldat, constructeur Soldat
+	 * @param nom
+	 * @param carte
+	 */
 	public Soldat(String nom, Carte carte){
 		this.carte=carte;
 		this.num = nom;
 		vide = false;
 		this.setClickable(true);
 	}
-
+	/**
+	 * 
+	 */
 	public void setPos(Position pos) {
 		this.pos = pos;
 	}
@@ -115,6 +130,9 @@ public abstract class Soldat extends Element implements ISoldat{
 	}
 
 	//@Override
+	/**
+	 * @param
+	 */
 	public void deplaceSoldat(Position newPos) {
 		this.deplace=true;
 		this.carte.deplaceSoldat(newPos,this);

@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class ArmeeHeros extends Armee {
     public ArmeeHeros(Carte carte){
         this.carte=carte;

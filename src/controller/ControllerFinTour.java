@@ -1,7 +1,11 @@
 package controller;
 
 import model.*;
-
+/**
+ * 
+ * @author KOMA NIANFO LOEW
+ *
+ */
 public class ControllerFinTour extends AbstractController {
     public ControllerFinTour(Partie p) {
         super(p);

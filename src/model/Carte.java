@@ -1,9 +1,18 @@
 package model;
 import java.util.ArrayList;
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Carte implements ICarte,IConfig{
-
+/**
+ * grille : grille de la carte
+ */
 	CaseModel[][] grille;
 	boolean obstacle=false;
+	/**
+	 * Carte : constructeur de la carte
+	 */
 	public Carte() {
 		// TODO Auto-generated constructor stub
 		grille =new CaseModel[LARGEUR_CARTE][HAUTEUR_CARTE];
@@ -13,8 +22,9 @@ public class Carte implements ICarte,IConfig{
 			}
 		}
 	}
-
-	//Placement des 20 Obstacles dans la grille
+/**
+ * Placement des 20 Obstacles dans la grille
+ */
 	public void placeObstacles(){
 		for(int i=0; i<NB_OBSTACLES ;i++){
 			Position p = trouvePositionVide();
@@ -22,7 +32,11 @@ public class Carte implements ICarte,IConfig{
 			grille[p.getX()][p.getY()].obstacle=true;
 		}
 	}
-	//Placement des Heros sur la carte
+	/**
+	 * 
+	 * Placement des Heros sur la carte
+	 * @param armeeHeros
+	*/
 	public void placeHeros(ArmeeHeros armeeHeros){
 		for(int i=0; i<armeeHeros.getListeSoldats().size();i++){
 			int x = (int)(Math.random()*(LARGEUR_CARTE/2-1));
@@ -39,7 +53,11 @@ public class Carte implements ICarte,IConfig{
 
 		}
 	}
-	//Placement des Monstres
+	
+	/**
+	 * Placement des Monstres
+	 * @param armeeMonstres
+	 */
 	public void placeMonstres(ArmeeMonstres armeeMonstres){
 		for(int i=0; i<armeeMonstres.getListeSoldats().size();i++){
 			int x = (int)(Math.random()*(LARGEUR_CARTE/2)+1+(LARGEUR_CARTE/2)-1);
@@ -57,6 +75,10 @@ public class Carte implements ICarte,IConfig{
 	}
 
 	//Obtenu element à la position pos
+	/**
+	 * Obtenu element à la position pos
+	 * @param pos
+	 */
 	public Element getElement(Position pos){
 		try {
 			return grille[pos.getX()][pos.getY()].getElement();
@@ -76,19 +98,19 @@ public class Carte implements ICarte,IConfig{
 			} 
 			return new Position(a,b);
 	}
+	/**
+	 * trouverMonstre
+	 * @param pos
+	 * @param carte
+	 * @return
+	 */
 	public boolean trouverMonstre(Position pos, Carte carte){
-	//	if(carte.grille[pos.getX()][pos.getY()].getElement() instanceof Obstacle){
-	//		return false;
-		//}
-			
 			if((carte.grille[pos.getX()][pos.getY()].getElement()).estMonstre()){
 				return true;
 			}
 	return false;
 	}
 	public boolean trouveHeros(Position pos,int portee){
-		//int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
-		//int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
 		for(int i=pos.getX();i<=pos.getX()+portee;i++){
 			for(int j=pos.getY();j<=pos.getY()+portee;j++){
 				if(((Soldat)getElement(new Position(i,j))).estHeros()){
@@ -123,7 +145,11 @@ public class Carte implements ICarte,IConfig{
 			grille[soldat.getPos().getX()][soldat.getPos().getY()].setElement(null);
 		}
 	}
-	
+	/**
+	 * deplaceSoldat
+	 * @param pos
+	 * @param soldat
+	 */
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
 		Position p = soldat.pos;
 		try{

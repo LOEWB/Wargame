@@ -1,7 +1,18 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Monstre extends Soldat{
+	/**
+	 * typeM
+	 */
 	private TypesM typeM;
+	/**
+	 * Monstre:
+	 * @param nom
+	 * @param carte
+	 */
 
 	public Monstre(String nom,Carte carte){
 		super(nom,carte);
@@ -14,6 +25,9 @@ public class Monstre extends Soldat{
 	}
 
 	@Override
+	/**
+	 * 
+	 */
 	public String getTypeName() {
 		return typeM.name();
 	}

@@ -6,9 +6,18 @@ import java.util.Collection;
 import observer.Observable;
 import observer.Observer;
 import view.PanneauJeu;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class Partie implements Observable{
-	
+	/**
+	 * joueurTourCourant,
+	 * joueurReel,
+	 * joueurIA,
+	 *  carte,
+	 *  partieEnCours
+	 */
 	private AbstractJoueur joueurTourCourant;
 	private JoueurReel joueurReel;
 	private JoueurIA joueurIA;
@@ -16,7 +25,9 @@ public class Partie implements Observable{
 	//PanneauJeu panneau;
 	private boolean partieEnCours = false;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>(); 
-
+/**
+ * constructeur Partie
+ */
 	public Partie(){
 		initPartie();
 	}
@@ -29,6 +40,9 @@ public class Partie implements Observable{
 		this.joueurTourCourant = this.joueurReel;
 		
 	}
+	/**
+	 * Lancement d'une partie
+	 */
 	
 	public void lancerPartie(){
 		this.carte.placeObstacles();

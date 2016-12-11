@@ -13,7 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public class PanneauJeu extends JPanel implements Observer, IConfig {
 
     private final ArrayList<Case> listeBoutons = new ArrayList<Case>();
@@ -25,7 +28,11 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
     public final static String CURSEUR_ATTACK = "/ressources/curseur_attack.png";
     public final static String CURSEUR_STOP = "/ressources/curseur_stop.png";
     public final static String CURSEUR_TIME = "/ressources/curseur_time.png";
-
+    /**
+     * PanneauJeu:
+     * @param nbCol
+     * @param nbLignes
+     */
 	public PanneauJeu(int nbCol, int nbLignes){
 		this.setLayout(new GridLayout(nbLignes,nbCol));
 		for(int i=0;i<nbLignes;i++)
@@ -88,7 +95,10 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         glowCasesSoldats();
     	}
     }
-
+    /**
+     * setCursor:
+     * @param lienCurseur
+     */
     public void setCursor(String lienCurseur) {
         try{
             Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -101,7 +111,10 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
 
         }
     }
-
+    /**
+     * explosion:
+     * @param pos
+     */
     public void explosion (Position pos){
         final Position posi = pos;
         final Icon ancienIcon = this.listeBoutons.get(pos.getY() * LARGEUR_CARTE + pos.getX()).getIcon();
@@ -121,7 +134,10 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
             System.err.println("Couldn't find file: " + "/ressources/explosion.gif");
         }
     }
-
+    /**
+     * glowCasesPortee:
+     * @param h
+     */
     public void glowCasesPortee(Heros h){
         for(int i=0;i<LARGEUR_CARTE;i++) {
             for (int j = 0; j < HAUTEUR_CARTE; j++) {
@@ -146,7 +162,9 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
             }
         }
     }
-
+    /**
+     * unglowCasesPortee:
+     */
     public void unglowCasesPortee(){
         for(int i=0;i<LARGEUR_CARTE;i++) {
             for (int j = 0; j < HAUTEUR_CARTE; j++) {

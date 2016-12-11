@@ -1,10 +1,19 @@
 package model;
-
+/**
+ * @author: KOMA NIANFO LOEW
+ * @version : 1.0
+ */
 public abstract class AbstractJoueur {
-
+/**
+ * 
+ */
 	protected Armee armee;
 
 	protected Partie partie;
+	/**
+	 * AbstractJoueur
+	 * @param p
+	 */
 	public AbstractJoueur(Partie p)
 	{
 		this.partie = p;
@@ -18,7 +27,9 @@ public abstract class AbstractJoueur {
 	public abstract void jouerTour();
 	public abstract void ajouterPartie(Partie p);
 	
-	
+	/**
+	 * notifierFinDeTour
+	 */
 	public void notifierFinDeTour(){
 		this.partie.notificationFinDeTour();
 	}
