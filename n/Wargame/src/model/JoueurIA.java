@@ -15,7 +15,7 @@ public class JoueurIA extends AbstractJoueur implements IConfig{
 	@Override
 	public void jouerTour() {
 		this.armee.initDebutTour();
-		//simulation tour du joueur IA
+		/////simulation tour du joueur IA
 		boolean combat=false;
 		
 		for(int i=0;i<NB_MONSTRES;i++){
