@@ -50,8 +50,12 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
      * @param str
      * @param o Partie en cours dans le modèle
      */
-    @Override
+    //@Override
     public void update(String str, Object o) {
+    	if(str.equals("explision")){
+    		explosion((Position)o);
+    	}
+    	else{	
         p=(Partie) o;
         this.grille=p.getCarte().getGrille();
 
@@ -82,6 +86,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
         }
 
         glowCasesSoldats();
+    	}
     }
 
     public void setCursor(String lienCurseur) {
@@ -105,7 +110,7 @@ public class PanneauJeu extends JPanel implements Observer, IConfig {
 
             this.listeBoutons.get(pos.getY() * LARGEUR_CARTE + pos.getX()).setIcon(new ImageIcon(imgURL));
             Timer timer = new Timer(500, new ActionListener() {
-                @Override
+                //@Override
                 public void actionPerformed(ActionEvent e) {
                     listeBoutons.get(posi.getY() * LARGEUR_CARTE + posi.getX()).setIcon(ancienIcon);
                 }

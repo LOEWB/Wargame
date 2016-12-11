@@ -6,6 +6,7 @@ public class Monstre extends Soldat{
 	public Monstre(String nom,Carte carte){
 		super(nom,carte);
 		this.heros = false;
+		this.monstre=true;
 		this.typeM = TypesM.getTypeMAlea();
 		this.texture = typeM.getTexture();
 		vie=getVie();

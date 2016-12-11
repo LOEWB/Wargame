@@ -1,11 +1,16 @@
 package view;
 
+
 import controller.ControllerFinTour;
 import model.Partie;
 import model.Position;
+import java.util.Observable;
 
 
-public class Launcher {
+public class Launcher  {
+	//Partie partie;
+	
+	//Launcher launche;
     public static void main(String args[]){
         System.out.println("started");
         
@@ -18,8 +23,13 @@ public class Launcher {
         partie.addObserver(fen);
         partie.addObserver(fen.getPanneau());
         partie.lancerPartie();
-
-
         
+        
+    }
+    public void redemarrerPartie(){
+    	Partie partie1 = new Partie();
+  
+    	partie1.lancerPartie();
+    	partie1.notifyObserver("");
     }
 }

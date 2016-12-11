@@ -1,5 +1,12 @@
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.Timer;
+
 
 public abstract class Soldat extends Element implements ISoldat{
 
@@ -9,8 +16,10 @@ public abstract class Soldat extends Element implements ISoldat{
 	protected int vie;
 	protected int pointsDeVie;
 	protected Carte carte;
-	protected boolean heros;
-
+	boolean combatM=false;
+	boolean deplace=false;
+	//protected boolean heros;
+	//protected boolean monstre;
 	public Soldat(String nom, Carte carte){
 		this.carte=carte;
 		this.num = nom;
@@ -51,21 +60,22 @@ public abstract class Soldat extends Element implements ISoldat{
 		aJoueCeTour=true;
 		return carte.deplaceSoldat(pos,this);
 	}
-
-	@Override
+	
+	
+	//@Override
 		public int getPoints() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
-	@Override
+//	@Override
 	public int getTour() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	@Override
+	//@Override
 	public void joueTour(int tour) {
 		// TODO Auto-generated method stub
 		
@@ -76,10 +86,11 @@ public abstract class Soldat extends Element implements ISoldat{
 	 * @param soldat à attaquer
 	 * @return true si attaque effectuee false si erreur
      */
-	@Override
+	//@Override
 	public boolean combat(Soldat soldat) {
 		Monstre monstre;
 		Heros heros;
+		
 		try{
 			if(this.heros) {
 				heros = (Heros) this;
@@ -91,6 +102,7 @@ public abstract class Soldat extends Element implements ISoldat{
 				monstre = (Monstre) this;
 				if(this.estAPortee(soldat.getPos()))
 					soldat.baisserVie((int)(Math.random()*monstre.getTypeM().getPuissance())+1);
+				this.combatM=true;
 			}
 
 			return true;
@@ -102,8 +114,9 @@ public abstract class Soldat extends Element implements ISoldat{
 		
 	}
 
-	@Override
+	//@Override
 	public void deplaceSoldat(Position newPos) {
+		this.deplace=true;
 		this.carte.deplaceSoldat(newPos,this);
 	}
 
@@ -143,6 +156,7 @@ public abstract class Soldat extends Element implements ISoldat{
 
 	public boolean estAPorteeDeplacement(Position posi)
 	{
+		
 		if (posi.getX()<=(this.getPos().getX()+1) && posi.getX()>=(this.getPos().getX()-1))
 			if (posi.getY()<=(this.getPos().getY()+1) && posi.getY()>=(this.getPos().getY()-1))
 				return true;
@@ -153,11 +167,13 @@ public abstract class Soldat extends Element implements ISoldat{
 		this.carte.getGrille()[this.getPos().getX()][this.getPos().getY()].setElement(new Element());
 	}
 
-	public boolean estHeros(){return this.heros;}
+	//public boolean estHeros(){return this.heros;}
+	//public boolean estMonstre(){return this.monstre;}
 	public boolean estEnVie()
 	{
 		return this.enVie;
 	}
+	
 	public abstract String getTypeName();
 	public abstract int getVie();
 	public abstract int getPortee();

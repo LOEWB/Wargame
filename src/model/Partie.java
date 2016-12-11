@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import observer.Observable;
 import observer.Observer;
+import view.PanneauJeu;
 
 public class Partie implements Observable{
 	
@@ -12,6 +13,7 @@ public class Partie implements Observable{
 	private JoueurReel joueurReel;
 	private JoueurIA joueurIA;
 	private Carte carte;
+	//PanneauJeu panneau;
 	private boolean partieEnCours = false;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>(); 
 
@@ -69,7 +71,9 @@ public class Partie implements Observable{
 	public Carte getCarte() {
 		return carte;
 	}
-
+	public void setCarte(Carte c){
+		this.carte=c;
+	}
 	public JoueurIA getJoueurIA() {
 		return joueurIA;
 	}
@@ -78,22 +82,28 @@ public class Partie implements Observable{
 		return partieEnCours;
 	}
 
-	@Override
+	//@Override
 	public void addObserver(Observer obs) {
 		this.listObserver.add(obs);
 		
 	}
 
-	@Override
+	//@Override
 	public void removeObserver() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
 	public void notifyObserver(String str) {
 		for(Observer obs : listObserver)
 			obs.update("",this);
 	}
+
+	//@Override
+	public void notifyObserverExplosion(Position str) {
+		for(Observer obs : listObserver)
+			obs.update("explision",str);
+	}
+	
+	//public void 
 }
 

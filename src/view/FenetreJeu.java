@@ -23,7 +23,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
     private static int index;
     private static model.Heros herosDepart;
     private static model.Position positionEntered;
-
+ 
     public FenetreJeu(ControllerFinTour controller, Partie partie){
         this.partie = partie;
         initFenetreJeu(controller);
@@ -50,12 +50,12 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
             this.panneau.getListeBoutons().get(index).addMouseListener(new MouseAdapter() {
                 private int indice = index;
 
-                @Override
+                //@Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                 }
 
-                @Override
+                //@Override
                 public void mousePressed(MouseEvent e) {
                     super.mousePressed(e);
 
@@ -71,7 +71,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                     }
                 }
 
-                @Override
+                //@Override
                 public void mouseReleased(MouseEvent e) {
                     panneau.setCursor(panneau.CURSEUR);
                     panneau.unglowCasesPortee();
@@ -101,7 +101,7 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                     }
                 }
 
-                @Override
+                //@Override
                 public void mouseEntered(MouseEvent e) {
                     footer.notifierHoverCase(partie.getCarte().getGrille()[indice%LARGEUR_CARTE][indice/LARGEUR_CARTE]);
 
@@ -133,22 +133,22 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
                     }
                 }
 
-                @Override
+                //@Override
                 public void mouseExited(MouseEvent e) {
                     footer.notifierSortieCase();
                 }
 
-                @Override
+                //@Override
                 public void mouseWheelMoved(MouseWheelEvent e) {
                     super.mouseWheelMoved(e);
                 }
 
-                @Override
+                //@Override
                 public void mouseDragged(MouseEvent e) {
                     super.mouseDragged(e);
                 }
 
-                @Override
+                //@Override
                 public void mouseMoved(MouseEvent e) {
                     super.mouseMoved(e);
                 }
@@ -160,7 +160,6 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
         this.setVisible(true);
     }
     
-
 	public PanneauJeu getPanneau() {
 		return panneau;
 	}
@@ -169,13 +168,18 @@ public class FenetreJeu extends JFrame implements IConfig,Observer{
 		return header;
 	}
 
-    @Override
+   // @Override
     public void update(String str, Object o) {
+    	if(str.equals("explision")){
+    		panneau.explosion((Position)o);
+    	}
+    	else{
         Partie p = (Partie) o;
         if(p.getJoueurTourCourant()==p.getJoueurReel())
             header.allumerBoutonFinTour();
         else
             header.eteindreBoutonFinTour();
+    	}
     }
 
 }

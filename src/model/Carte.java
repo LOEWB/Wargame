@@ -1,10 +1,9 @@
 package model;
-
-
+import java.util.ArrayList;
 public class Carte implements ICarte,IConfig{
 
 	CaseModel[][] grille;
-	
+	boolean obstacle=false;
 	public Carte() {
 		// TODO Auto-generated constructor stub
 		grille =new CaseModel[LARGEUR_CARTE][HAUTEUR_CARTE];
@@ -20,6 +19,7 @@ public class Carte implements ICarte,IConfig{
 		for(int i=0; i<NB_OBSTACLES ;i++){
 			Position p = trouvePositionVide();
 			grille[p.getX()][p.getY()].setElement(new Obstacle(p));
+			grille[p.getX()][p.getY()].obstacle=true;
 		}
 	}
 	//Placement des Heros sur la carte
@@ -76,54 +76,54 @@ public class Carte implements ICarte,IConfig{
 			} 
 			return new Position(a,b);
 	}
-
-	/*public Heros trouveHeros(Position pos){
-		int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
-		int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
-		while(grille[i][j].getElement().texture !=COULEUR_HEROS){
-			i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
-			j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
-		} 
-		return  (Heros)grille[i][j].getElement();
-	}*/
+	public boolean trouverMonstre(Position pos, Carte carte){
+	//	if(carte.grille[pos.getX()][pos.getY()].getElement() instanceof Obstacle){
+	//		return false;
+		//}
+			
+			if((carte.grille[pos.getX()][pos.getY()].getElement()).estMonstre()){
+				return true;
+			}
+	return false;
+	}
+	public boolean trouveHeros(Position pos,int portee){
+		//int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
+		//int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		for(int i=pos.getX();i<=pos.getX()+portee;i++){
+			for(int j=pos.getY();j<=pos.getY()+portee;j++){
+				if(((Soldat)getElement(new Position(i,j))).estHeros()){
+					((Soldat)grille[pos.getX()][pos.getY()].getElement()).combat((Soldat)grille[i][j].getElement());
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public Position trouvePositionVide(Position pos){
-		int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
-		int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
-		while(grille[i][j].getElement()!=null){
-			i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1));
-			j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1));
+		int i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1))+(pos.getX()-1);
+		int j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1))+(pos.getX()-1);
+		//Element e= getElement(new Position(i,j));
+		while(((Soldat)grille[pos.getX()][pos.getY()].getElement()).estHeros() && grille[pos.getX()][pos.getY()].obstacle){
+			i = (int)(Math.random()*(pos.getX()+1)-(pos.getX()-1))+(pos.getX()-1);
+			j = (int)(Math.random()*(pos.getY()+1)-(pos.getY()-1))+(pos.getX()-1);
 		} 
 		return new Position(i,j);
 	}
-	/*public Heros trouveHeros(){
+	public Heros trouveHeros(){
 		int a = (int)(Math.random()*LARGEUR_CARTE);
 		int b = (int)(Math.random()*HAUTEUR_CARTE);
-		while(grille[a][b].getElement().texture !=COULEUR_HEROS){
+		while(((Soldat)grille[a][b].getElement()).estHeros()){
 			a = (int)(Math.random()*LARGEUR_CARTE);
 			b = (int)(Math.random()*HAUTEUR_CARTE);
 		} 
 		return (Heros) grille[a][b].getElement();
-	}*/
+	}
 	public void mort(Soldat soldat){
 		if(soldat.getPoints()==0){
 			grille[soldat.getPos().getX()][soldat.getPos().getY()].setElement(null);
 		}
 	}
-	/*public boolean actionHeros(Position pos, Position pos2){
-		if(grille[pos.getX()][pos.getY()].getElement().texture !=COULEUR_HEROS)
-			return false ;
-		if(grille[pos2.getX()][pos2.getY()].getElement()==null){ 
-			deplaceSoldat(pos2,(Soldat)grille[pos.getX()][pos.getY()].getElement());
-			return true;
-		}
-		if(grille[pos2.getX()][pos2.getY()].getElement().texture ==COULEUR_MONSTRES){
-			((Soldat)grille[pos.getX()][pos.getY()].getElement()).combat((Soldat)grille[pos2.getX()][pos2.getY()].getElement());
-			return true;
-		}
-		return false;
-	}*/
-
-
+	
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
 		Position p = soldat.pos;
 		try{
@@ -142,4 +142,5 @@ public class Carte implements ICarte,IConfig{
 	public CaseModel[][] getGrille() {
 		return grille;
 	}
+	
 }
