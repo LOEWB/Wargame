@@ -6,8 +6,8 @@ public interface IConfig {
 	int NB_PIX_CASE = 20;
 	int POSITION_X = 100; int POSITION_Y = 50; // Position de la fen�tre
 	int NB_HEROS = 6; int NB_MONSTRES = 15; int NB_OBSTACLES = 20;
-	Color COULEUR_VIDE = Color.white, COULEUR_INCONNU = Color.lightGray;
+	String TEXTURE_VIDE = "/ressources/texture.png", TEXTURE_INCONNU = "/ressources/texture_inconnu.png";
 	Color COULEUR_TEXTE = Color.black, COULEUR_MONSTRES = Color.black;
 	Color COULEUR_HEROS = Color.red, COULEUR_HEROS_DEJA_JOUE = Color.pink;
-	Color COULEUR_EAU = Color.blue, COULEUR_FORET = Color.green, COULEUR_ROCHER = Color.gray;
+	String TEXTURE_EAU = "/ressources/texture_eau.png", TEXTURE_FORET = "/ressources/texture_foret.png", TEXTURE_ROCHER="/ressources/texture_rocher.png";
 }
